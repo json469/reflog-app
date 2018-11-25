@@ -2,12 +2,12 @@ import * as React from 'react';
 import './App.css';
 
 import { CssBaseline } from '@material-ui/core';
-import NavBar from './components/navigations/NavBar'
-import ThemeWrapper from './components/navigations/ThemeWrapper'
+import NavBar from './components/NavBar'
+import ThemeWrapper from './components/ThemeWrapper'
 
-import Read from './components/read/Read'
-import Feed from './components/feed/Feed'
-import Pray from './components/pray/Pray'
+import Read from './components/Read'
+import Feed from './components/Feed'
+import Pray from './components/Pray'
 
 
 interface IStates {

@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+  
+.navbar-right {
+    float: right;
+    flex: 1;
+}
