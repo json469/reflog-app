@@ -73,8 +73,8 @@ class NavBar extends React.Component<IProps, IStates> {
     }
 
     private handleNightMode() {
-        this.props.handleNightMode()
         this.handleClose()
+        this.props.handleNightMode()
     }
 }
 
