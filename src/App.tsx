@@ -5,7 +5,7 @@ import { CssBaseline } from '@material-ui/core';
 import NavBar from './components/NavBar'
 import ThemeWrapper from './components/ThemeWrapper'
 
-import Read from './components/Read'
+import Read from './components/ReadTab/Read'
 import Feed from './components/Feed'
 import Pray from './components/Pray'
 

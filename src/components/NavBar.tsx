@@ -21,7 +21,7 @@ class NavBar extends React.Component<IProps, IStates> {
         super(props)
 
         this.state = {
-            tabValue: 0,
+            tabValue: "read",
             openSetting: null,
         }
         
@@ -36,7 +36,7 @@ class NavBar extends React.Component<IProps, IStates> {
         const { tabValue, openSetting } = this.state
 
         return (
-            
+
             <div className='navbar'>
                 <AppBar position='static' color='inherit' >
                     <Toolbar>
@@ -74,9 +74,9 @@ class NavBar extends React.Component<IProps, IStates> {
                                     value={tabValue}
                                     onChange={(event, value) => this.handleTabChange(value)}
                                 >
-                                    <Tab label="Read" value="read"/>
-                                    <Tab label="Feed" value="feed"/>
-                                    <Tab label="Pray" value="pray"/>
+                                    <Tab label="read" value="read"/>
+                                    <Tab label="feed" value="feed"/>
+                                    <Tab label="pray" value="pray"/>
                                 </Tabs>
 
                             </span>
@@ -87,8 +87,9 @@ class NavBar extends React.Component<IProps, IStates> {
         )
     }
 
-    private handleTabChange(tabChange:any) {
-        this.props.handleTabChange(tabChange)
+    private handleTabChange(tabValue:any) {
+        this.setState({ tabValue })
+        this.props.handleTabChange(tabValue)
     }
 
     private handleSettingOpen(e:any) {
