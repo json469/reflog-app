@@ -1,21 +1,34 @@
 import * as React from 'react';
 import './App.css';
 
-import logo from './logo.svg';
+import NavBar from './components/navigations/NavBar'
+import ThemeWrapper from './components/navigations/ThemeWrapper'
 
-class App extends React.Component {
+interface IStates {
+  nightMode:boolean
+}
+
+class App extends React.Component<{}, IStates> {
+
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      nightMode:false
+    }
+
+    this.handleNightMode = this.handleNightMode.bind(this)
+  }
+
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          Testing!
-        </p>
-      </div>
+      <ThemeWrapper nightMode={this.state.nightMode}>
+        <NavBar nightMode={this.state.nightMode} handleNightMode={this.handleNightMode}/>
+      </ThemeWrapper>
     );
+  }
+
+  private handleNightMode() {
+    this.setState({ nightMode : !this.state.nightMode })
   }
 }
 
