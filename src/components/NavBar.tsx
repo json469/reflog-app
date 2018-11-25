@@ -36,6 +36,7 @@ class NavBar extends React.Component<IProps, IStates> {
         const { tabValue, openSetting } = this.state
 
         return (
+            
             <div className='navbar'>
                 <AppBar position='static' color='inherit' >
                     <Toolbar>
