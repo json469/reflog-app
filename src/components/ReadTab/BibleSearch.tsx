@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Button, Dialog, Typography } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, Slide } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add'
 
 interface IStates {
@@ -38,10 +38,14 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                     <AddIcon />
                 </Button>
 
-                <Dialog open={dialogFAB} onClose={this.closeFAB}>
-                    <Typography>
-                        Add new bible.
-                    </Typography>
+                <Dialog
+                    TransitionComponent={Transition}
+                    open={dialogFAB}
+                    onClose={this.closeFAB}
+                >
+                    <DialogTitle>
+                        Search a new verse to add
+                    </DialogTitle>
                 </Dialog>
             </div>
         )
@@ -54,4 +58,8 @@ export default class BibleSearch extends React.Component<{}, IStates> {
     private closeFAB() {
         this.setState({ dialogFAB: false })
     }
+}
+
+function Transition(props:any) {
+    return <Slide direction="up" {...props} />;
 }
