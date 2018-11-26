@@ -1,3 +1,11 @@
 Inspired by works of Reformation Netowrk (RefNet) from Ligonier. Reformation Logarithm (RefLog) strives to become an all-in-one web app to provide resources to support daily sanctification.
 
 TODO:
+
+BLOG:
+25/11/2018
+Designing the app wasn't all that easy due to the lack of existing app that really captures 
+the whole<italic> solution. I started off by reviewing each components: Bible (Bible App), Prayer (Echo Prayer App).
+
+I was easily overwehelmed (as usual) by looking in detail too closely of each (advance) functions. Therefore, I humbled(?) myself and took a step back and made a goal to get the bare minimum functions added and added well!
+

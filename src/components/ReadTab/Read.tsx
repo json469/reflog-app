@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Typography, Paper } from '@material-ui/core';
 
-import './read.css'
+import './ReadTab.css'
 
 export default class Read extends React.Component<{}, {}> {
 
