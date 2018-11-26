@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Button, Dialog, DialogTitle, Slide } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, Slide, TextField, DialogActions, DialogContent, DialogContentText, } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add'
 
 interface IStates {
@@ -18,6 +18,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
 
         this.openFAB = this.openFAB.bind(this)
         this.closeFAB = this.closeFAB.bind(this)
+        this.addVerse = this.addVerse.bind(this)
     }
 
     public render() {
@@ -41,8 +42,31 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                     onClose={this.closeFAB}
                 >
                     <DialogTitle>
-                        Search a new verse to add
+                        Add a new verse
                     </DialogTitle>
+
+                    <DialogContent>
+                        <DialogContentText>
+                            Seach by chapter or by contents
+                        </DialogContentText>
+                        <TextField
+                            id="filled-search"
+                            label="Search field"
+                            type="search"
+                            margin="none"
+                            variant="filled"
+                        />
+                    </DialogContent>
+
+                    <DialogActions>
+                        <Button onClick={this.closeFAB} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={this.addVerse} color="primary">
+                            Add
+                        </Button>
+                    </DialogActions>
+                    
                 </Dialog>
             </div>
         )
@@ -55,6 +79,12 @@ export default class BibleSearch extends React.Component<{}, IStates> {
     private closeFAB() {
         this.setState({ dialogFAB: false })
     }
+
+    private addVerse() {
+        alert('add verse')
+        this.closeFAB()
+    }
+
 }
 
 function Transition(props:any) {
