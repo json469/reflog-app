@@ -10,6 +10,7 @@
   "rules": {
     "jsx-no-lambda": false,
     "ordered-imports": false,
+    "no-unused-expression": false,
     "object-literal-sort-keys": false
   }
 }
