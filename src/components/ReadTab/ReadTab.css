@@ -3,11 +3,17 @@
     padding: 1em;
 }
 
-.bible {
+.read-bible {
     margin-left: 1em;
     margin-right: 1em;
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+}
+
+#read-fab {
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
 }
