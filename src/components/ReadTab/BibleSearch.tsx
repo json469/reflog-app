@@ -26,18 +26,15 @@ export default class BibleSearch extends React.Component<{}, IStates> {
 
         return (
             
-            <div className='biblesearch'>
-            
-
+            <div className='bible-search'>
                 <Button
-                    id='read-fab'
+                    id='bible-fab'
                     color='secondary'
                     variant='fab'
                     onClick={this.openFAB}
                 >
                     <AddIcon />
                 </Button>
-
                 <Dialog
                     TransitionComponent={Transition}
                     open={dialogFAB}

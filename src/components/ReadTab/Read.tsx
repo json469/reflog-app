@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Typography, Paper } from '@material-ui/core';
-
 import './ReadTab.css'
+
 import BibleSearch from './BibleSearch';
+import BibleNoteList from './BibleNoteList';
 
 export default class Read extends React.Component<{}, {}> {
 
@@ -16,13 +16,8 @@ export default class Read extends React.Component<{}, {}> {
             <div className='read-tab'>
 
                 <BibleSearch />
+                <BibleNoteList />
 
-                <Paper className='read-bible'>
-                    <Typography>
-                        Test
-                    </Typography>
-                </Paper>
-                
             </div>
         )
     }
