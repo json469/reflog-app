@@ -1,16 +1,29 @@
 import * as React from 'react';
-import { Button, Typography, Paper } from '@material-ui/core';
+import { Button, Dialog, Typography, Paper } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add'
 
 import './ReadTab.css'
 
-export default class Read extends React.Component<{}, {}> {
+interface IStates {
+    dialogFAB: boolean
+}
+
+export default class Read extends React.Component<{}, IStates> {
 
     constructor(props:any) {
         super(props)
+
+        this.state = {
+            dialogFAB: false,
+        }
+
+        this.openFAB = this.openFAB.bind(this)
+        this.closeFAB = this.closeFAB.bind(this)
     }
 
     public render() {
+
+        const { dialogFAB } = this.state
 
         return (
             <div className='read-tab'>
@@ -21,11 +34,30 @@ export default class Read extends React.Component<{}, {}> {
                     </Typography>
                 </Paper>
 
-                <Button id='read-fab' variant='fab'>
+                <Button
+                    id='read-fab'
+                    color='secondary'
+                    variant='fab'
+                    onClick={this.openFAB}
+                >
                     <AddIcon />
                 </Button>
 
+                <Dialog open={dialogFAB} onClose={this.closeFAB}>
+                    <Typography>
+                        Add new bible.
+                    </Typography>
+                </Dialog>
+
             </div>
         )
+    }
+
+    private openFAB() {
+        this.setState({ dialogFAB: true })
+    }
+
+    private closeFAB() {
+        this.setState({ dialogFAB: false })
     }
 }
