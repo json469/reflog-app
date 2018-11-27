@@ -46,10 +46,11 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                 <Button
                     id='bible-fab'
                     color='secondary'
-                    variant='fab'
+                    variant='extendedFab'
                     onClick={this.openFAB}
                 >
                     <AddIcon />
+                    verse
                 </Button>
                 <Dialog
                     TransitionComponent={Transition}
