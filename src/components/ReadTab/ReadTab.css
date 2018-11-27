@@ -18,9 +18,19 @@
     padding-bottom: 0.5em;
 }
 
+.bible-search-results {
+    margin-top: 0.5em;
+    padding: 0.5em;
+}
+
+.bible-search-results-passage {
+    margin-top: 0.2em;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
 #bible-fab {
     position: fixed;
     right: 1em;
     bottom: 1em;
 }
-

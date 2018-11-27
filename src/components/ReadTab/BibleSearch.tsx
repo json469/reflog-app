@@ -1,8 +1,10 @@
 import * as React from 'react';
 import Axios from 'axios'
 
-import { Button, Dialog, DialogTitle, Slide, TextField, DialogActions, DialogContent, DialogContentText, Typography, Paper } from '@material-ui/core';
+import { Button, CircularProgress, Dialog, DialogTitle, Slide, TextField, DialogActions, DialogContent } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add'
+
+import BibleSearchResults from './BibleSearchResults'
 
 interface IStates {
     dialogFAB: boolean
@@ -10,6 +12,7 @@ interface IStates {
     searchQuery: string
     searchResult: string
     searchResults: string[]
+    loading: boolean
 }
 
 export default class BibleSearch extends React.Component<{}, IStates> {
@@ -23,19 +26,19 @@ export default class BibleSearch extends React.Component<{}, IStates> {
             searchQuery: "",
             searchResult: "",
             searchResults: [],
+            loading: true,
         }
 
         this.openFAB = this.openFAB.bind(this)
         this.closeFAB = this.closeFAB.bind(this)
         this.onSearchFieldChange = this.onSearchFieldChange.bind(this)
-        this.addVerse = this.addVerse.bind(this)
         this.searchByPassage = this.searchByPassage.bind(this)
         this.searchByPassageSearch = this.searchByPassageSearch.bind(this)
     }
 
     public render() {
         
-        const { dialogFAB, searchQuery, searchResult, searchResults } = this.state
+        const { dialogFAB, searchQuery, searchResult, searchResults, loading } = this.state
 
         return (
 
@@ -52,64 +55,39 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                     TransitionComponent={Transition}
                     open={dialogFAB}
                     onClose={this.closeFAB}
+                    fullWidth={true}
                 >
                     <DialogTitle>
-                        Add a new verse
-                    </DialogTitle>
-
-                    <DialogContent className='bible-search-field'>
-                        <DialogContentText>
-                            Seach by chapter or by contents
-                        </DialogContentText>
                         <TextField
                             id="filled-search"
-                            label="Search field"
+                            label="Seach by passage or contents"
                             type="search"
                             margin="none"
                             variant="filled"
+                            fullWidth={true}
                             onChange={(e) => this.onSearchFieldChange(e.target.value)}
                         />
-                    </DialogContent>
+                    </DialogTitle>
 
-                    <DialogContent className="bible-search-results">
-
-                    {(searchResult !== "") ? 
-                        <Paper className="bible-search-results-passage">
-                            <Typography variant='h6'>
-                                { searchQuery }
-                            </Typography>
-                            <Typography>
-                                { searchResult }
-                            </Typography>
-                        </Paper>
-                    :
-                        <div>
-                            {searchResults.map((result:any, index:number) => {
-                                return (
-                                    <Paper className="bible-search-results-passagesearch" key={index}>
-                                        <Typography variant='h6'>
-                                            { result.reference }
-                                        </Typography>
-                                        <Typography>
-                                            { result.content }
-                                        </Typography>
-                                    </Paper>
-                                )
-                            })}
-                        </div>
-                    }  
-
-
-
-
+                    <DialogContent className='bible-search-results' >
+                        {((searchResult !== "" ) && loading) ?
+                            <div className='loading'>
+                                <CircularProgress thickness={3}/>
+                            </div>
+                        :
+                            <BibleSearchResults searchQuery={searchQuery} searchResult={searchResult} searchResults={searchResults} />
+                        }
                     </DialogContent>
 
                     <DialogActions>
+                        <Button 
+                            color="primary"
+                            onClick={this.searchByPassage}
+                        >
+                            Search
+                        </Button>
                         <Button onClick={this.closeFAB} color="primary">
                             Cancel
-                        </Button>
-                        <Button onClick={this.addVerse} color="primary">
-                            Add
                         </Button>
                     </DialogActions>
                     
@@ -123,7 +101,13 @@ export default class BibleSearch extends React.Component<{}, IStates> {
     }
 
     private closeFAB() {
-        this.setState({ searchField: ""})
+            this.setState({
+                searchField: "",
+                searchQuery: "",
+                searchResult: "",
+                searchResults: [],
+                loading: true,
+            })
         this.setState({ dialogFAB: false })
     }
 
@@ -131,16 +115,16 @@ export default class BibleSearch extends React.Component<{}, IStates> {
         this.setState({ searchField })
     }
 
-    private addVerse() {
-        
-        const { searchField } = this.state
-        
-        alert(searchField)
-        this.searchByPassage()
-    }
-
     // Search by chapter first
     private searchByPassage() {
+
+        // Clear our past state
+        this.setState({
+            searchQuery: "",
+            searchResult: "",
+            searchResults: [],
+            loading: true,
+        })
 
         const { searchField } = this.state
 
@@ -153,7 +137,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                 'q': searchField,
                 'include-headings': 'false',
                 'include-footnotes': 'false',
-                'include-verse-numbers': 'false',
+                'include-verse-numbers': 'true',
                 'include-short-copyright': 'false',
                 'include-passage-references': 'false',
                 'indent-poetry': 'false',
@@ -171,6 +155,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                     this.setState({
                         searchQuery,
                         searchResult,
+                        loading: false,
                     })
 
                 } else {
@@ -192,6 +177,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
             },
             params : {
                 'q': searchField,
+                'page-size': 100,
             }
         }
 
@@ -204,6 +190,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
 
                 this.setState({
                     searchResults,
+                    loading: false,
                 })
             })
         

@@ -1,6 +1,7 @@
 Inspired by works of Reformation Netowrk (RefNet) from Ligonier. Reformation Logarithm (RefLog) strives to become an all-in-one web app to provide resources to support daily sanctification.
 
 TODO:
+Would be nice if bible search textfield has onEnter to keep track of enter (or search button on mobile).
 
 BLOG:
 25/11/2018

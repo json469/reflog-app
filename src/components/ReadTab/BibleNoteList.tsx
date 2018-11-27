@@ -33,11 +33,9 @@ export default class BibleNoteList extends React.Component<IProps, IStates> {
         return (
 
             <div className='bible-notelist'>
-                
                 {notes.map((note:any, index:number) => {
                     <BibleNoteDetail note={note} key={index}/>
                 })}}
-
             </div>
         )
     }

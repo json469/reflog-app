@@ -17,18 +17,18 @@ class ThemeWrapper extends React.Component<IProps, IStates> {
         this.state = {
             theme: createMuiTheme({
                 palette: { type : (this.props.nightMode) ? 'dark' : 'light' },
-                typography: { fontFamily: 'Roboto' }
+                typography: { fontFamily: 'Roboto', useNextVariants: true }
             })
         }
     }
 
     public componentWillReceiveProps(nextProps:any) {
-        this.state = {
+        this.setState({
             theme: createMuiTheme({
                 palette: { type : (nextProps.nightMode) ? 'dark' : 'light' },
-                typography: { fontFamily: 'Roboto' }
+                typography: { fontFamily: 'Roboto', useNextVariants: true }
             })
-        }
+        })
     }
 
     public render() {
