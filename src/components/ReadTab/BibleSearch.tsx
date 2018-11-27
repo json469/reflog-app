@@ -5,6 +5,7 @@ import AddIcon from '@material-ui/icons/Add'
 
 interface IStates {
     dialogFAB: boolean
+    searchField: string
 }
 
 export default class BibleSearch extends React.Component<{}, IStates> {
@@ -14,10 +15,12 @@ export default class BibleSearch extends React.Component<{}, IStates> {
 
         this.state = {
             dialogFAB: false,
+            searchField: "",
         }
 
         this.openFAB = this.openFAB.bind(this)
         this.closeFAB = this.closeFAB.bind(this)
+        this.onSearchFieldChange = this.onSearchFieldChange.bind(this)
         this.addVerse = this.addVerse.bind(this)
     }
 
@@ -55,6 +58,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                             type="search"
                             margin="none"
                             variant="filled"
+                            onChange={(e) => this.onSearchFieldChange(e.target.value)}
                         />
                     </DialogContent>
 
@@ -80,8 +84,15 @@ export default class BibleSearch extends React.Component<{}, IStates> {
         this.setState({ dialogFAB: false })
     }
 
+    private onSearchFieldChange(searchField: string) {
+        this.setState({ searchField })
+    }
+
     private addVerse() {
-        alert('add verse')
+        
+        const { searchField } = this.state
+        
+        alert(searchField)
         this.closeFAB()
     }
 
