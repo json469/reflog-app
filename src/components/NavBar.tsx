@@ -1,4 +1,4 @@
-import { AppBar, IconButton, Menu, MenuItem, Tab, Tabs, Toolbar, Typography} from '@material-ui/core/';
+import { AppBar, FormGroup, FormControlLabel, Switch, IconButton, Menu, MenuItem, Tab, Tabs, Toolbar, Typography, } from '@material-ui/core/';
 import MoreVertIcon  from '@material-ui/icons/MoreVert'
 import * as React from 'react';
 
@@ -61,8 +61,23 @@ class NavBar extends React.Component<IProps, IStates> {
                                     open={Boolean(openSetting)}
                                     onClose={this.handleSettingClose}
                                 >
-                                    <MenuItem onClick={this.handleNightMode}>
-                                        { (nightMode) ? 'Disable' : 'Enable'} Night Mode
+
+                                    <MenuItem style={{alignItems:'right'}}>
+                                        About
+                                    </MenuItem>
+
+                                    <MenuItem >
+                                        <FormGroup row={true} >
+                                            <FormControlLabel
+                                                label="Night Mode"
+                                                control={
+                                                    <Switch
+                                                    checked={nightMode}
+                                                    onChange={this.handleNightMode}
+                                                    />
+                                                }
+                                            />
+                                        </FormGroup>
                                     </MenuItem>
                                 </Menu>
 
