@@ -57,7 +57,9 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                     open={dialogFAB}
                     onClose={this.closeFAB}
                     fullWidth={true}
-                >
+                    disableBackdropClick={true}
+                    disableEscapeKeyDown={true}
+                >   
                     <DialogTitle>
                         <TextField
                             id="filled-search"
