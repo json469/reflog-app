@@ -32,6 +32,8 @@ export default class BibleSearch extends React.Component<{}, IStates> {
         this.openFAB = this.openFAB.bind(this)
         this.closeFAB = this.closeFAB.bind(this)
         this.onSearchFieldChange = this.onSearchFieldChange.bind(this)
+        this.onSearchFieldPressEnter = this.onSearchFieldPressEnter.bind(this)
+        this.addVerse = this.addVerse.bind(this)
         this.searchByPassage = this.searchByPassage.bind(this)
         this.searchByPassageSearch = this.searchByPassageSearch.bind(this)
     }
@@ -66,9 +68,9 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                             label="Seach by passage or contents"
                             type="search"
                             margin="none"
-                            variant="filled"
                             fullWidth={true}
                             onChange={(e) => this.onSearchFieldChange(e.target.value)}
+                            onKeyPress={(e) => this.onSearchFieldPressEnter(e)}
                         />
                     </DialogTitle>
 
@@ -83,13 +85,16 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                     </DialogContent>
 
                     <DialogActions>
-                        <Button 
+                        <Button
                             color="primary"
-                            onClick={this.searchByPassage}
+                            onClick={this.addVerse}
                         >
-                            Search
+                            Add
                         </Button>
-                        <Button onClick={this.closeFAB} color="primary">
+                        <Button
+                            color="primary"
+                            onClick={this.closeFAB}
+                        >
                             Cancel
                         </Button>
                     </DialogActions>
@@ -116,6 +121,16 @@ export default class BibleSearch extends React.Component<{}, IStates> {
 
     private onSearchFieldChange(searchField: string) {
         this.setState({ searchField })
+    }
+
+    private onSearchFieldPressEnter(event: any) {
+        if (event.charCode === 13) {
+            this.searchByPassage()
+        }
+    }
+
+    private addVerse() {
+        alert ('adding verse!')
     }
 
     // Search by chapter first
