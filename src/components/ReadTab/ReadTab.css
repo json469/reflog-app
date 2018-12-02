@@ -18,6 +18,16 @@
     padding-bottom: 0.5em;
 }
 
+.empty-bible {
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    justify-content: center;
+}
+
 .bible-search-results {
     margin-top: 0.5em;
     padding: 0.5em;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Paper, Typography } from '@material-ui/core';
 import BibleNoteDetail from './BibleNoteDetail'
 
 interface IProps {
@@ -18,7 +18,7 @@ export default class BibleNoteList extends React.Component<IProps, IStates> {
 
         this.state = {
             notes: [],
-            loading: true,
+            loading: false,
         }
 
         this.fetchNotes()
@@ -28,6 +28,19 @@ export default class BibleNoteList extends React.Component<IProps, IStates> {
 
         const { notes, loading } = this.state
 
+        if (notes.toString() === '') {
+
+            return (
+                <Paper className="empty-bible">
+                    <Typography>
+                        Look's like there aren't any verses here yet.
+                        <br/>
+                        Add your first verse by clicking on add verse below!
+                    </Typography>
+                </Paper>
+            )
+        }
+
         if (loading) { return <CircularProgress className='loading' thickness={3}/>}
 
         return (
@@ -35,7 +48,7 @@ export default class BibleNoteList extends React.Component<IProps, IStates> {
             <div className='bible-notelist'>
                 {notes.map((note:any, index:number) => {
                     <BibleNoteDetail note={note} key={index}/>
-                })}}
+                })}
             </div>
         )
     }
