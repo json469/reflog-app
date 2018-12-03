@@ -12,6 +12,7 @@ interface IStates {
     searchQuery: string
     searchResult: string
     searchResults: string[]
+    searching: boolean
     loading: boolean
 }
 
@@ -26,6 +27,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
             searchQuery: "",
             searchResult: "",
             searchResults: [],
+            searching: false,
             loading: true,
         }
 
@@ -40,7 +42,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
 
     public render() {
         
-        const { dialogFAB, searchQuery, searchResult, searchResults, loading } = this.state
+        const { dialogFAB, searchQuery, searchResult, searchResults, searching, loading } = this.state
 
         return (
 
@@ -75,8 +77,8 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                     </DialogTitle>
 
                     <DialogContent className='bible-search-results' >
-                        {((searchResult !== "" ) && loading) ?
-                            <div className='loading'>
+                        {(searching && loading) ?
+                            <div style={{position:'fixed', left:'47.5%'}}>
                                 <CircularProgress thickness={3}/>
                             </div>
                         :
@@ -114,6 +116,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                 searchQuery: "",
                 searchResult: "",
                 searchResults: [],
+                searching: false,
                 loading: true,
             })
         this.setState({ dialogFAB: false })
@@ -141,6 +144,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
             searchQuery: "",
             searchResult: "",
             searchResults: [],
+            searching: true,
             loading: true,
         })
 
@@ -173,6 +177,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
                     this.setState({
                         searchQuery,
                         searchResult,
+                        searching: true,
                         loading: false,
                     })
 
@@ -208,6 +213,7 @@ export default class BibleSearch extends React.Component<{}, IStates> {
 
                 this.setState({
                     searchResults,
+                    searching: true,
                     loading: false,
                 })
             })
